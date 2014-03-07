@@ -29,7 +29,6 @@
 <% if user_signed_in? %>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Link</a></li>
         <li><a href="#">Mes annonces</a></li>
         
       </ul>
@@ -44,6 +43,7 @@
           </form>
         </li>
 <!--         <li><a href="#">Link</a></li> -->
+        <li><%= image_tag avatar_url(current_user), :class => 'navbar-form' %></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mon compte <b class="caret"></b></a>
           <ul class="dropdown-menu">
