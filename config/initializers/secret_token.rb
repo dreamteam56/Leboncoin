@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Leboncoin::Application.config.secret_key_base = 'd60089e9a7177dde76608880f25e3d29ff22559a0fa88991c437ac6dc5e5b04546972517aab9b3750e04b6f493319fe9d1842b55ee250c50430e08bf5b8f4cac'
+Leboncoin::Application.config.secret_key_base = '98850e96fbd8fcbf748e8c80f396f90b7fe59959728bee8017b5843ceb54afb1910e8a94d29bc957a9286b7fbd2d8cb7a28e9306a56ea73f296fbdbabaeac809'
