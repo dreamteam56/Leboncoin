@@ -1,6 +1,7 @@
 - @annonces.each do |annonce|
+  %img{src:""+ annonce["url"], style: "width:80px; height:90px;"}
   - if user_signed_in?
     %a{href: "/annonces/show?id="+ annonce["id"].to_s}= annonce["title"]
   -else
     %h2= annonce["title"]
-  %p= annonce["description"]
+
