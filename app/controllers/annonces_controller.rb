@@ -4,6 +4,6 @@ class AnnoncesController < ApplicationController
   end
 
   def show
-    @annonces =  Annonce.where(id: params[:id])
+    @annonces = Annonce.where(id: params[:id])
   end
 end

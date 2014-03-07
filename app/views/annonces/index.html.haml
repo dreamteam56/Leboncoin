@@ -1,6 +1,6 @@
 - @annonces.each do |annonce|
   - if user_signed_in?
-    %a{href: "/annonces/id="+ annonce["id"].to_s}= annonce["title"]
+    %a{href: "/annonces/show?id="+ annonce["id"].to_s}= annonce["title"]
   -else
     %h2= annonce["title"]
   %p= annonce["description"]
