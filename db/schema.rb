@@ -11,23 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140307102647) do
+ActiveRecord::Schema.define(version: 20140307104615) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "t_etudiant", id: false, force: true do |t|
-    t.string "pk_num_secu", limit: 13, null: false
-    t.string "ck_num_etu",  limit: 20, null: false
-    t.string "nom",         limit: 50, null: false
-    t.string "prenom",      limit: 50, null: false
-  end
-
-  add_index "t_etudiant", ["ck_num_etu"], name: "t_etudiant_ck_num_etu_key", unique: true, using: :btree
-
-  create_table "t_inscription", id: false, force: true do |t|
-    t.string "pk_code_ue",  limit: 4,  null: false
-    t.string "fk_code_etu", limit: 13, null: false
+  create_table "annonces", force: true do |t|
+    t.string   "title"
+    t.string   "description"
+    t.integer  "price"
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|
