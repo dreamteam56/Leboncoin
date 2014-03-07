@@ -1,2 +1,3 @@
-%h1 Annonces#index
-%p Find me in app/views/annonces/index.html.haml
+- @annonces.each do |annonce|
+  %h2= annonce["title"]
+  %p= annonce["description"]

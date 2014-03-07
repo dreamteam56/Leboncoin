@@ -1,7 +1,8 @@
 Leboncoin::Application.routes.draw do
-  get "annonces/index"
-  get "home/index"
-  devise_for :users
+ get "annonces/index"
+  #get "home/index"
+  #devise_for :users
+  #root 'annonces#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
