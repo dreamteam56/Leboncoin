@@ -13,6 +13,7 @@
   <%= stylesheet_link_tag "pure/layouts/marketing-old-ie" %> -->
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
   <!-- Optional theme -->
   <!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css"> -->
@@ -39,11 +40,11 @@
             <div class="form-group">
               <input type="text" class="form-control" placeholder="Search">
             </div>
-            <button type="submit" class="btn btn-default">Submit</button>
+            <button type="submit" class="btn btn-default"><i class="fa fa-search"></i>  Submit</button>
           </form>
         </li>
 <!--         <li><a href="#">Link</a></li> -->
-        <li><%= image_tag avatar_url(current_user), :class => 'navbar-form' %></li>
+        <li><%= image_tag avatar_url(current_user), :class => 'navbar-form img-circle' %></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mon compte <b class="caret"></b></a>
           <ul class="dropdown-menu">
