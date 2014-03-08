@@ -1,0 +1,22 @@
+.row
+  - @annonces.each do |annonce|
+    .col-sm-4
+      .panel.panel-default
+        .panel-body
+          .row
+            .col-sm-4
+              %img{src:""+ annonce["url"].to_s, style: "width:80px; height:90px;"}
+            - if user_signed_in?
+              %p= annonce["title"]
+              .col-sm-2
+                %button.btn.btn-primary.btn-xs
+                  Modifier
+              .col-sm-2
+                %button.btn.btn-warning.btn-xs
+                  Archiver
+              .col-sm-2
+                %button.btn.btn-danger.btn-xs
+                  Supprimer
+            -else
+              %h2= annonce["title"]
+

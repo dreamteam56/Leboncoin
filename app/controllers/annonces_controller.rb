@@ -15,4 +15,8 @@ class AnnoncesController < ApplicationController
     @annonce.save
     redirect_to action: 'index'
   end
+
+  def mine
+    @annonces = Annonce.where(user_id: current_user.id)
+  end
 end
