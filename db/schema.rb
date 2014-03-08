@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20140307163356) do
     t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "vendeur"
   end
 
   create_table "users", force: true do |t|
