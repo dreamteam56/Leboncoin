@@ -15,6 +15,13 @@ class AnnoncesController < ApplicationController
     @annonce.save
     redirect_to action: 'index'
   end
+  
+  def destroy
+    # TODO
+    # Verifier que c'est l'utilisateur qui suuprime
+    Annonce.destroy(params[:id])
+    redirect_to action: 'mine'
+  end
 
   def mine
     @annonces = Annonce.where(user_id: current_user.id)

@@ -15,7 +15,7 @@
                 %button.btn.btn-warning.btn-xs
                   Archiver
               .col-sm-2
-                %button.btn.btn-danger.btn-xs
+                %button.btn.btn-danger.btn-xs{onclick: "location.href=\'/annonces/destroy?id="+annonce["id"].to_s+"'" }
                   Supprimer
             -else
               %h2= annonce["title"]

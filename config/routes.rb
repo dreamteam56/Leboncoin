@@ -4,6 +4,7 @@ Leboncoin::Application.routes.draw do
   get "annonces/show"
   get "annonces/new"
   post "annonces/create"
+  get "annonces/destroy"
   get "annonces/mine"
   #devise_for :users
   #root 'annonces#index'
