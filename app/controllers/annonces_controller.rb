@@ -8,6 +8,11 @@ class AnnoncesController < ApplicationController
   end
 
   def new
-    @annonces = Annonce.new()
+  end
+
+  def create
+    @annonce = Annonce.new(title: params[:title], description: params[:description], price: params[:price], user_id: params[:user_id])
+    @annonce.save
+    redirect_to action: 'index'
   end
 end
