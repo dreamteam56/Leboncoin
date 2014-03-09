@@ -6,6 +6,22 @@
         location.href='/annonces/destroy?id='+id;
     })
   }
+
+  function archiver(id)
+  {
+    bootbox.confirm("Are you sure you want to archive it?",function(result){
+      if(result)
+        location.href='/annonces/archiver?id='+id;
+    })
+  }
+
+  function activer(id)
+  {
+    bootbox.confirm("Are you sure you want to unable it?",function(result){
+      if(result)
+        location.href='/annonces/activer?id='+id;
+    })
+  }
 .row
   - @annonces.each do |annonce|
     .col-sm-4
@@ -20,8 +36,12 @@
                 %button.btn.btn-primary.btn-xs
                   Modifier
               .col-sm-2
-                %button.btn.btn-warning.btn-xs
-                  Archiver
+                - if annonce["archive"] == false
+                  %button.btn.btn-warning.btn-xs{onclick: "archiver("+annonce["id"].to_s+")" }
+                    Archiver
+                - else
+                  %button.btn.btn-warning.btn-xs{onclick: "activer("+annonce["id"].to_s+")" }
+                    Activer           
               .col-sm-2
                 %button.btn.btn-danger.btn-xs{onclick: "supprimer("+annonce["id"].to_s+")" }
                   Supprimer

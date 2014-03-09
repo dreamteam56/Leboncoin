@@ -13,7 +13,7 @@ class AnnoncesController < ApplicationController
   end
 
   def create
-    @annonce = Annonce.new(title: params[:title], description: params[:description], price: params[:price], user_id: params[:user_id])
+    @annonce = Annonce.new(title: params[:title], description: params[:description], price: params[:price], user_id: params[:user_id], archive: false)
     @annonce.save
     redirect_to action: 'index'
   end
@@ -35,4 +35,12 @@ class AnnoncesController < ApplicationController
     @annonce.save
     redirect_to action: 'mine'
   end
+
+  def activer
+    @annonce = Annonce.find_by(id: params[:id])
+    @annonce.update_attributes(archive: false)
+    @annonce.save
+    redirect_to action: 'mine'
+  end
+  
 end
