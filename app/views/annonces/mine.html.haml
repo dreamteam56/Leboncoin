@@ -1,3 +1,11 @@
+:javascript
+  function supprimer (id)
+  {
+    bootbox.confirm("Are you sure?", function(result){
+      if(result)
+        location.href='/annonces/destroy?id='+id;
+    })
+  }
 .row
   - @annonces.each do |annonce|
     .col-sm-4
@@ -15,7 +23,7 @@
                 %button.btn.btn-warning.btn-xs
                   Archiver
               .col-sm-2
-                %button.btn.btn-danger.btn-xs{onclick: "location.href=\'/annonces/destroy?id="+annonce["id"].to_s+"'" }
+                %button.btn.btn-danger.btn-xs{onclick: "supprimer("+annonce["id"].to_s+")" }
                   Supprimer
             -else
               %h2= annonce["title"]
