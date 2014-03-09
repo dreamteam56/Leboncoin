@@ -5,6 +5,8 @@ class AnnoncesController < ApplicationController
 
   def show
     @annonces = Annonce.where(id: params[:id])
+    @prop = User.where(id: @annonces[0]['user_id'])
+    puts @prop[0]['email']
   end
 
   def new

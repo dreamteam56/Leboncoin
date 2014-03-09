@@ -1,3 +1,11 @@
+:javascript
+  function supprimer (id)
+  {
+    bootbox.confirm("Are you sure?", function(result){
+      if(result)
+        location.href='/annonces/destroy?id='+id;
+    })
+  }
 .row
   .col-sm-8
     .panel.panel-default
@@ -22,7 +30,7 @@
             Modifier l'annonce
           %button.btn.btn-warning.btn-lg.btn-block
             Archiver l'annonce
-          %button.btn.btn-danger.btn-lg.btn-block
+          %button.btn.btn-danger.btn-lg.btn-block{onclick: "supprimer("+@annonces[0]["id"].to_s+")" }
             Supprimer l'annonce
     -else
       .panel.panel-default
@@ -32,10 +40,13 @@
         .panel-body
           %p
             %i.fa.fa-user
+            = @prop[0]['username']
           %p
             %i.fa.fa-phone
+            = @prop[0]['firstname']
           %p
             %i.fa.fa-envelope
+            = @prop[0]['email']
       .panel.panel-default
         .panel-heading
           %p
