@@ -1,18 +1,17 @@
 .row
   - @annonces.each do |annonce|
-    - if !(annonce["archive"])
-      .col-sm-4
-        .panel.panel-default
-          .panel-body
-            .row
-              .col-sm-4
-                %img{src:""+ annonce["url"].to_s, style: "width:80px; height:90px;"}
-                - if user_signed_in?
-                  %a{href: "/annonces/show?id="+ annonce["id"].to_s}= annonce["title"]
-                  .col-sm-8
-                    %h3
-                      =annonce['price']
-                      %i.fa.fa-eur
-                -else
-                  %h2= annonce["title"]
+    .col-sm-4
+      .panel.panel-default
+        .panel-body
+          .row
+            .col-sm-4
+              %img{src:""+ annonce["url"].to_s, style: "width:80px; height:90px;"}
+            - if user_signed_in?
+              %a{href: "/annonces/show?id="+ annonce["id"].to_s}= annonce["title"]
+              .col-sm-8
+                %h3
+                  =annonce['price']
+                  %i.fa.fa-eur
+            -else
+              %h2= annonce["title"]
 

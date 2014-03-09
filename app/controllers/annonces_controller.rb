@@ -1,6 +1,6 @@
 class AnnoncesController < ApplicationController
   def index
-    @annonces = Annonce.all
+    @annonces = Annonce.where(archive: false)
   end
 
   def show
@@ -30,8 +30,8 @@ class AnnoncesController < ApplicationController
   end
 
   def archiver
-    @annonce = Annonce.where(id: params[:id])
-    @annonce.update_attributes("archive",true)
+    @annonce = Annonce.find_by(id: params[:id])
+    @annonce.update_attributes(archive: true)
     @annonce.save
     redirect_to action: 'mine'
   end
