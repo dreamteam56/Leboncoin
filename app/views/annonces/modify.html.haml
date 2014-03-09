@@ -1,0 +1,20 @@
+.panel.panel-default
+  .panel-heading
+    %h2
+      Modifier une annonce
+  .panel-body
+    .row
+      = form_tag("/annonces/update", method: "post") do
+        .col-sm-6
+          .form-group
+            %label{for: "exampleInputEmail1"} Title
+            %input#title.form-control{value: @annonce["title"], name: "title"}/
+            %input#id.form-control{type: "hidden", value: current_user.id, name: "user_id"}
+          .form-group
+            %label{for: "exampleInputPassword1"} Description
+            %textarea#description.form-control{rows: "3",value: @annonce["description"], name: "description"}
+          .form-group
+            %label{for: "exampleInputPassword1"} Price
+            %input#price.form-control{value: @annonce["price"],type: "number", name: "price"}/
+          .form-group
+            %button.btn.btn-default{type: "submit"} Update

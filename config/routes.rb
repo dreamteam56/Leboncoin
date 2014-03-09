@@ -8,6 +8,8 @@ Leboncoin::Application.routes.draw do
   get "annonces/mine"
   get "annonces/archiver"
   get "annonces/activer"
+  get "annonces/modify"
+  post "annonces/update"
   #devise_for :users
   #root 'annonces#index'
   # The priority is based upon order of creation: first created -> highest priority.

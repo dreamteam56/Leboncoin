@@ -14,11 +14,18 @@
         location.href='/annonces/archiver?id='+id;
     })
   }
+
+  function modifier(id)
+  {
+        location.href='/annonces/modify?id='+id;
+  }
 .row
   .col-sm-8
     .panel.panel-default
       .panel-heading
         %p= @annonces[0]["title"]
+        %p Posté par 
+        %a{href: "users/profile"} current_user.name
       .panel-body
         %img{src:""+ @annonces[0]["url"].to_s, style: "width:120px; height:140px;"}
     .panel.panel-default
@@ -34,7 +41,7 @@
           %p
             Gerer        
         .panel-body
-          %button.btn.btn-primary.btn-lg.btn-block
+          %button.btn.btn-primary.btn-lg.btn-block{onclick: "modifier("+@annonces[0]["id"].to_s+")" }
             Modifier l'annonce
           %button.btn.btn-warning.btn-lg.btn-block{onclick: "archiver("+@annonces[0]["id"].to_s+")" }
             Archiver l'annonce

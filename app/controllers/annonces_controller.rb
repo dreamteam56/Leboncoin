@@ -43,4 +43,12 @@ class AnnoncesController < ApplicationController
     redirect_to action: 'mine'
   end
   
+  def modify  
+    @annonce = Annonce.find_by(id: params[:id])
+  end
+
+  def update
+    @annonce = Annonce.where(user_id: params[:user_id])
+    @annonce[0].update_attributes(params[:post])
+  end
 end
