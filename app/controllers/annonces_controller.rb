@@ -28,4 +28,11 @@ class AnnoncesController < ApplicationController
   def mine
     @annonces = Annonce.where(user_id: current_user.id)
   end
+
+  def archiver
+    @annonce = Annonce.where(id: params[:id])
+    @annonce.update_attributes("archive",true)
+    @annonce.save
+    redirect_to action: 'mine'
+  end
 end

@@ -6,6 +6,14 @@
         location.href='/annonces/destroy?id='+id;
     })
   }
+
+  function archiver(id)
+  {
+    bootbox.confirm("Are you sure you want to archive it?",function(result){
+      if(result)
+        location.href='/annonces/archiver?id='+id;
+    })
+  }
 .row
   .col-sm-8
     .panel.panel-default
@@ -28,7 +36,7 @@
         .panel-body
           %button.btn.btn-primary.btn-lg.btn-block
             Modifier l'annonce
-          %button.btn.btn-warning.btn-lg.btn-block
+          %button.btn.btn-warning.btn-lg.btn-block{onclick: "archiver("+@annonces[0]["id"].to_s+")" }
             Archiver l'annonce
           %button.btn.btn-danger.btn-lg.btn-block{onclick: "supprimer("+@annonces[0]["id"].to_s+")" }
             Supprimer l'annonce
