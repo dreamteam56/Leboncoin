@@ -48,7 +48,10 @@ class AnnoncesController < ApplicationController
   end
 
   def update
-    @annonce = Annonce.where(user_id: params[:user_id])
-    @annonce[0].update_attributes(params[:post])
+    @annonce = Annonce.find(params[:id])
+    @annonce.update_attributes(title: params[:title])
+    @annonce.update_attributes(description: params[:description])
+    @annonce.update_attributes(price: params[:price])
+    redirect_to action: 'index'
   end
 end
