@@ -19,6 +19,13 @@
   {
         location.href='/annonces/modify?id='+id;
   }
+
+  function signaler(id){
+    bootbox.confirm("Etes-vous sur de vouloir signaler cette annonce ? ", function(result){
+      if(result)
+        location.href='/annonces/signaler?id='+id;
+    });
+  }
 .row
   .col-sm-8
     .panel.panel-default
@@ -67,5 +74,5 @@
           %p
             Signaler      
         .panel-body    
-          %button.btn.btn-danger.btn-lg.btn-block
+          %button.btn.btn-danger.btn-lg.btn-block{onclick: "signaler("+@annonces[0]["id"].to_s+")" }
             Signaler l'annonce

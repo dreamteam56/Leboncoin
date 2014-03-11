@@ -54,4 +54,11 @@ class AnnoncesController < ApplicationController
     @annonce.update_attributes(price: params[:price])
     redirect_to action: 'index'
   end
+
+  def signaler 
+    @admins = User.where(admin: true)
+    puts @admins[0]["email"]
+    redirect_to action: 'index'
+    #ModelMailer.signal_annonce().deliver
+  end
 end
