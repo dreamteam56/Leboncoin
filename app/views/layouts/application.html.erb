@@ -46,10 +46,10 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-        <li>      
-          <form class="navbar-form navbar-left" role="search">
+        <li>     
+          form_tag("/annonces/update", method: "post") do
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="Search">
+              <input class="form-control" id="title" name="title" value="<%= @annonce["title"] %>">/</input>
             </div>
             <button type="submit" class="btn btn-default"><i class="fa fa-search"></i>  Submit</button>
           </form>
