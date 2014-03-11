@@ -58,7 +58,8 @@ class AnnoncesController < ApplicationController
   def signaler 
     @admins = User.where(admin: true)
     puts @admins[0]["email"]
+    ModelMailer.signal_annonce(@admins).deliver
     redirect_to action: 'index'
-    #ModelMailer.signal_annonce().deliver
+    
   end
 end
