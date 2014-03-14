@@ -7,17 +7,17 @@
       = form_tag("/annonces/create", method: "post") do
         .col-sm-6
           .form-group
-            %label{for: "exampleInputEmail1"} Title
+            %label{for: "exampleInputEmail1"} Titre
             %input#title.form-control{placeholder: "Enter title", name: "title"}/
             %input#id.form-control{type: "hidden", value: current_user.id, name: "user_id"}
           .form-group
             %label{for: "exampleInputPassword1"} Description
             %textarea#description.form-control{rows: "3", name: "description"}
           .form-group
-            %label{for: "exampleInputPassword1"} Price
+            %label{for: "exampleInputPassword1"} Prix
             %input#price.form-control{placeholder: "Enter price",type: "number", name: "price"}/
           .form-group
-            %button.btn.btn-default{type: "submit"} Submit
+            %button.btn.btn-default{type: "submit"} Valider
 
       
     

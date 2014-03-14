@@ -62,4 +62,9 @@ class AnnoncesController < ApplicationController
     redirect_to action: 'index'
     
   end
+
+  def chercher
+    @annonces = Annonce.where("title like ?",'%'+params[:title]+'%')
+    render :action => :index
+  end
 end
