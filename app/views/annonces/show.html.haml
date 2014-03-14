@@ -31,8 +31,6 @@
     .panel.panel-default
       .panel-heading
         %p= @annonces[0]["title"]
-        %p Posté par 
-        %a{href: "users/profile"}= @prop[0]['username']
       .panel-body
         %img{src:""+ @annonces[0]["url"].to_s, style: "width:120px; height:140px;"}
     .panel.panel-default

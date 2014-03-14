@@ -64,7 +64,7 @@ class AnnoncesController < ApplicationController
   end
 
   def chercher
-    @annonces = Annonce.where("title like %?%",params[:title])
+    @annonces = Annonce.where("title like ?",'%'+params[:title]+'%')
     render :action => :index
   end
 end
