@@ -36,8 +36,9 @@
         %p
           Contacter
       .panel-body
-        = form_tag("/annonces/update", method: "post") do
+        = form_tag("/annonces/contact", method: "post") do
           .form-group
+            %input#id.form-control{type: 'hidden', value:@annonces[0]["user_id"], name: 'user_id'}
             %label{for: "exampleInputPassword1"} Message
             %textarea#description.form-control{rows: "8", name: "message"}
           .form-group

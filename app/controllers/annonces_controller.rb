@@ -67,4 +67,10 @@ class AnnoncesController < ApplicationController
     @annonces = Annonce.where("title like ?",'%'+params[:title]+'%')
     render :action => :index
   end
+
+  def contact
+    @receiver = User.find_by(id: params[:user_id])
+    current_user.send_message(@receiver,params["message"],'nom de annonce')
+    redirect_to action: 'index'
+  end
 end
