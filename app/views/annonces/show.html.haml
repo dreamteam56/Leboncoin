@@ -36,7 +36,12 @@
         %p
           Contacter
       .panel-body
-        %img{src:""+ @annonces[0]["url"].to_s, style: "width:120px; height:140px;"}
+        = form_tag("/annonces/update", method: "post") do
+          .form-group
+            %label{for: "exampleInputPassword1"} Message
+            %textarea#description.form-control{rows: "8", name: "message"}
+          .form-group
+            %button.btn.btn-default{type: "submit"} Envoyer
     .panel.panel-default
       .panel-heading
         %p= @annonces[0]["title"]
@@ -90,7 +95,7 @@
   $(document).ready(function(){
 
     $( ".contact" ).click(function() {
-      $( ".contact_form" ).show( 2000 );
+      $( ".contact_form" ).show( 1000 );
       $(this).toggleClass("disabled")
     });
 
