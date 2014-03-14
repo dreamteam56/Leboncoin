@@ -26,8 +26,17 @@
         location.href='/annonces/signaler?id='+id;
     });
   }
+
 .row
   .col-sm-8
+    .panel.panel-default.contact_form{style: "display: none"}
+      .panel-heading
+        %button.close.close-contact{}
+          &times;
+        %p
+          Contacter
+      .panel-body
+        %img{src:""+ @annonces[0]["url"].to_s, style: "width:120px; height:140px;"}
     .panel.panel-default
       .panel-heading
         %p= @annonces[0]["title"]
@@ -67,7 +76,7 @@
           %p
             %i.fa.fa-envelope
             = @prop[0]['email']
-          %button.btn.btn-primary.btn-lg.btn-block
+          %button.btn.btn-primary.btn-lg.btn-block.contact
             Contacter
       .panel.panel-default
         .panel-heading
@@ -76,3 +85,18 @@
         .panel-body    
           %button.btn.btn-danger.btn-lg.btn-block{onclick: "signaler("+@annonces[0]["id"].to_s+")" }
             Signaler l'annonce
+
+:javascript
+  $(document).ready(function(){
+
+    $( ".contact" ).click(function() {
+      $( ".contact_form" ).show( 2000 );
+      $(this).toggleClass("disabled")
+    });
+
+    $( ".close-contact" ).click(function() {
+      $( ".contact_form" ).hide( 2000 );
+      $(".contact").removeClass("disabled");
+    });
+
+  });
