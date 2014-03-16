@@ -13,16 +13,22 @@ class AnnoncesController < ApplicationController
   end
 
   def create
-    @annonce = Annonce.new(title: params[:title], description: params[:description], price: params[:price], user_id: params[:user_id], archive: false)
+    @annonce = Annonce.new(annonce_params)
+    @annonce.archive = false
+    @annonce.user_id = params[:user_id]
     @annonce.save
-    redirect_to action: 'index'
+    redirect_to action: 'mine'
+  end
+
+  def annonce_params
+    params.require(:annonce).permit(:picture,:title,:description,:user_id,:price)
   end
   
   def destroy
     # TODO
     # Verifier que c'est l'utilisateur qui suuprime
     Annonce.destroy(params[:id])
-    redirect_to action: 'mine'
+    redirect_to action: 'index'
   end
 
   def mine

@@ -1,0 +1,26 @@
+.panel.panel-default
+  .panel-heading
+    %h2
+      Créer une annonce
+  .panel-body
+    .row
+      = form_tag("/annonces/create", method: "post") do
+        .col-sm-6
+          .form-group
+            %label{for: "exampleInputEmail1"} Titre
+            %input#title.form-control{placeholder: "Enter title", name: "title"}/
+            %input#id.form-control{type: "hidden", value: current_user.id, name: "user_id"}
+            %input#archive.form-control{type: "hidden", value: "false" , name: "archive"}
+          .form-group
+            %input#picture{type: "file", name: "picture",accept: "image/jpg,image/png"}
+            %label{for: "exampleInputPassword1"} Description
+            %textarea#description.form-control{rows: "3", name: "description"}
+          .form-group
+            %label{for: "exampleInputPassword1"} Prix
+            %input#price.form-control{placeholder: "Enter price",type: "number", name: "price"}/
+          .form-group
+            %button.btn.btn-default{type: "submit"} Valider
+
+      
+    
+  

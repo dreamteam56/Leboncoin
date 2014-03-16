@@ -47,7 +47,7 @@
       .panel-heading
         %p= @annonces[0]["title"]
       .panel-body
-        %img{src:""+ @annonces[0]["url"].to_s, style: "width:120px; height:140px;"}
+        %img{src: @annonces[0].picture.url(:large)}
     .panel.panel-default
       .panel-body
         %p= @annonces[0]["price"]

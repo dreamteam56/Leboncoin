@@ -1,0 +1,32 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2>
+      Créer une annonce
+    </h2>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <%= form_for Annonce.new, url: {action: "create"},html: {class: "form-control"} do |a| %>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <%= a.label :title %> 
+            <%= a.text_field :title %>
+            <%= hidden_field_tag 'user_id', current_user.id    %>
+          </div>
+          <div class="form-group">
+            <%= a.file_field :picture %>
+            <%= a.label :description %>
+            <%= a.text_area :description %>
+          </div>
+          <div class="form-group">
+            <%= a.label :price %>
+            <%= a.number_field :price %>
+          </div>
+          <div class="form-group">
+            <%= a.submit  "Créer" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
