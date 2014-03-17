@@ -10,6 +10,7 @@
             %label{for: "exampleInputEmail1"} Titre
             %input#title.form-control{value: @annonce["title"], name: "title"}/
             %input#id.form-control{type: "hidden", value: @annonce["id"], name: "id"}
+            %input#picture.form-control{type: "file",name: "picture",}
           .form-group
             %label{for: "exampleInputPassword1"} Description
             %textarea#description.form-control{rows: "3", name: "description"}= @annonce["description"]

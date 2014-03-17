@@ -58,6 +58,7 @@ class AnnoncesController < ApplicationController
     @annonce.update_attributes(title: params[:title])
     @annonce.update_attributes(description: params[:description])
     @annonce.update_attributes(price: params[:price])
+    @annonce.update_attributes(picture: params[:picture])
     redirect_to action: 'index'
   end
 
