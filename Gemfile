@@ -12,6 +12,8 @@ gem 'haml-rails'
 
 gem 'mailboxer'
 
+gem 'whenever', :require => false
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 

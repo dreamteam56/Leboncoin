@@ -17,4 +17,9 @@ class User < ActiveRecord::Base
       :thumb => "-gravity Center -crop 100x100+0+0",
     }
   }
+
+  def self.annonce_weekly
+
+      #Code pour envoyer mail à tous les users
+  end
 end
