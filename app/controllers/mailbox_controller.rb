@@ -9,7 +9,7 @@ class MailboxController < ApplicationController
 
   def show
     conversation = current_user.mailbox.sentbox
-    puts current_user.mailbox.sentbox
+    puts current_user.mailbox.sentbox.where(id: 2)[0].original_message
     render json: conversation[1].original_message
   end
 
