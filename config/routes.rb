@@ -8,16 +8,13 @@ Leboncoin::Application.routes.draw do
   get "annonces/mine"
   get "annonces/archiver"
   get "annonces/activer"
-  get "annonces/modify"
+  # get "annonces/modify"
   post "annonces/update"
   get "annonces/signaler"
   post "annonces/chercher"
   post "annonces/contact"
 
   get "mailbox/sent"
-  get "mailbox/index"
-  get "mailbox/show"
-
 
   resources :annonces do
         get 'show'
@@ -25,11 +22,12 @@ Leboncoin::Application.routes.draw do
         get 'new'
         post 'create'
         get 'edit' => 'annonces#modify' 
+        patch 'archiver'
+  end
 
-    # member do
-          
-    #   # put 'archiver'
-    # end
+  resources :mailbox do
+    get 'index'
+    get 'show'
   end
 
   # resources :users do
