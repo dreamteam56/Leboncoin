@@ -5,7 +5,7 @@
         .panel-body
           .row
             .col-sm-4
-              %img{src: annonce.picture.url(:medium)}
+              
             - if user_signed_in?
               %a{href: "/annonces/show?id="+ annonce["id"].to_s}= annonce["title"]
               .col-sm-8

@@ -14,9 +14,10 @@ class AnnoncesController < ApplicationController
 
   def create
     @annonce = Annonce.new(annonce_params)
-    @annonce.archive = false
-    @annonce.user_id = params[:user_id]
-    @annonce.save
+    5.times {@annonce.assets.build}
+   # @annonce.archive = false
+   # @annonce.user_id = params[:user_id]
+   # @annonce.save
     redirect_to action: 'mine'
   end
 
