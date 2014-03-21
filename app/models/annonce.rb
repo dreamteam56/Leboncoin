@@ -21,3 +21,4 @@ class Annonce < ActiveRecord::Base
     other_user && other_user.id == user_id
   end
 
+end
