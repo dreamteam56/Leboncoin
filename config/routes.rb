@@ -6,7 +6,7 @@ Leboncoin::Application.routes.draw do
   # post "annonces/create"
   get "annonces/destroy"
   get "annonces/mine"
-  get "annonces/archiver"
+  # get "annonces/archiver"
   get "annonces/activer"
   # get "annonces/modify"
   post "annonces/update"
@@ -22,7 +22,7 @@ Leboncoin::Application.routes.draw do
         get 'new'
         post 'create'
         get 'edit' => 'annonces#modify' 
-        patch 'archiver'
+        patch 'archiver' => 'annonces#archiver'
   end
 
   resources :mailbox do
@@ -42,7 +42,7 @@ Leboncoin::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'annonces#index'
-
+  match '/annonces/', to: 'annonces#index', via: [:get]
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

@@ -44,6 +44,7 @@ public
   end
 
   def archiver
+    puts "Dans la fonction archiver"
     @annonce = current_user.annonces.find params[:id]
     @annonce.update_attributes(archive: true)
     redirect_to action: 'mine'
@@ -63,11 +64,14 @@ public
 
   def update
     @annonce = Annonce.find(params[:id])
-    @annonce.update_attributes(title: params[:title])
-    @annonce.update_attributes(description: params[:description])
-    @annonce.update_attributes(price: params[:price])
-    @annonce.update_attributes(picture: params[:picture])
-    redirect_to action: 'index'
+    if params[:archive].present?
+      @annonce.update_attributes(archive: params[:archive])
+    end
+    # @annonce.update_attributes(title: params[:title])
+    # @annonce.update_attributes(description: params[:description])
+    # @annonce.update_attributes(price: params[:price])
+    # @annonce.update_attributes(picture: params[:picture])
+    redirect_to status: 303
   end
 
   def signaler 

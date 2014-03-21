@@ -8,12 +8,23 @@
     })
   }
 
+
   function archiver(id)
   {
     bootbox.confirm("Are you sure you want to archive it?",function(result){
       if(result)
-        location.href='/annonces/archiver?id='+id;
-    })
+        $.ajax({
+          headers: {
+            'X-CSRF-Token': $("meta[name='csrf-token']").attr("content")
+          },
+          url: window.location.pathname,
+          type: 'PATCH',
+          data: {archive: true},
+          success: function(result){
+            location.reload()
+          }
+        });
+    });
   }
 
   function modifier(id)
@@ -49,8 +60,8 @@
       .panel-heading
         %p= @annonce["title"]
       .panel-body
-      - for asset in @annonce.assets 
-        = link_to image_tag(asset.asset.url(:thumb)), asset.asset.url(:original) 
+      / - for asset in @annonce.assets 
+      /   = link_to image_tag(asset.asset.url(:thumb)), asset.asset.url(:original) 
     .panel.panel-default
       .panel-body
         %p= @annonce["price"]
