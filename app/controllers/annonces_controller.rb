@@ -1,6 +1,6 @@
 class AnnoncesController < ApplicationController
 
-  before_action :authenticate_user!, only: %w(mine destroy)
+  before_action :authenticate_user!, only: %w(mine destroy archiver activer modify contact signaler)
 
 protected
 
@@ -15,10 +15,6 @@ public
   end
 
   def show
-    # @annonces = Annonce.where(id: params[:id])
-    # @prop = User.where(id: @annonces[0]['user_id'])
-    # puts @prop[0]['email']
-
     @annonce = Annonce.find params[:id]
     @owner = @annonce.user
     @displayed_by_owner = @annonce.is_owned_by?(current_user)
@@ -37,8 +33,6 @@ public
   end
   
   def destroy
-    # TODO
-    # Verifier que c'est l'utilisateur qui suuprime
     Annonce.destroy(params[:id])
     redirect_to action: 'index'
   end
@@ -51,9 +45,7 @@ public
 
   def archiver
     @annonce = current_user.annonces.find params[:id]
-    # @annonce = Annonce.find_by(id: params[:id])
     @annonce.update_attributes(archive: true)
-    @annonce.save
     redirect_to action: 'mine'
   end
 
@@ -64,8 +56,9 @@ public
     redirect_to action: 'mine'
   end
   
-  def modify  
-    @annonce = Annonce.find_by(id: params[:id])
+  def modify 
+    @annonce = Annonce.find_by(id: params[:annonce_id])
+    puts @annonce
   end
 
   def update
