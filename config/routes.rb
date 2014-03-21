@@ -1,8 +1,8 @@
 Leboncoin::Application.routes.draw do
   devise_for :users
-  get "annonces/index"
-  get "annonces/show"
-  get "annonces/new"
+  # get "annonces/index"
+  # get "annonces/show"
+  # get "annonces/new"
   post "annonces/create"
   get "annonces/destroy"
   get "annonces/mine"
@@ -17,6 +17,24 @@ Leboncoin::Application.routes.draw do
   get "mailbox/sent"
   get "mailbox/index"
   get "mailbox/show"
+
+
+  resources :annonces do
+        get 'show'
+        get 'index'
+
+
+    member do
+      get 'new'     
+      # put 'archiver'
+    end
+  end
+
+  resources :users do
+    resources :annonces do
+      get 'index'
+    end   
+  end
   #devise_for :users
   #root 'annonces#index'
   # The priority is based upon order of creation: first created -> highest priority.
