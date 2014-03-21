@@ -14,9 +14,9 @@
             <%= hidden_field_tag 'user_id', current_user.id    %>
           </div>
           <div class="form-group">
-            <%= f.fields_for :assets do |asset| %>
+            <%= a.fields_for :assets do |asset| %>
         
-              <% if asset.object.new_record? %>
+              <% unless asset.object.new_record? %>
                  <%= asset.file_field :picture %>
               <% end %>
 

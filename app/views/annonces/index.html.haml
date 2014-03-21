@@ -5,7 +5,7 @@
         .panel-body
           .row
             .col-sm-4
-              
+            
             - if user_signed_in?
               %a{href: "/annonces/show?id="+ annonce["id"].to_s}= annonce["title"]
               .col-sm-8
@@ -14,4 +14,3 @@
                   %i.fa.fa-eur
             -else
               %h2= annonce["title"]
-
