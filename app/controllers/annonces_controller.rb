@@ -1,12 +1,27 @@
 class AnnoncesController < ApplicationController
+
+  before_action :authenticate_user!, only: %w(mine destroy)
+
+protected
+
+  def annonce_params
+    params.require(:annonce).permit(:picture,:title,:description,:user_id,:price)
+  end
+
+public
+
   def index
     @annonces = Annonce.where(archive: false)
   end
 
   def show
-    @annonces = Annonce.where(id: params[:id])
-    @prop = User.where(id: @annonces[0]['user_id'])
-    puts @prop[0]['email']
+    # @annonces = Annonce.where(id: params[:id])
+    # @prop = User.where(id: @annonces[0]['user_id'])
+    # puts @prop[0]['email']
+
+    @annonce = Annonce.find params[:id]
+    @owner = @annonce.user
+    @displayed_by_owner = @annonce.is_owned_by?(current_user)
   end
 
   def new
@@ -19,10 +34,6 @@ class AnnoncesController < ApplicationController
     @annonce.save
     redirect_to action: 'mine'
   end
-
-  def annonce_params
-    params.require(:annonce).permit(:picture,:title,:description,:user_id,:price)
-  end
   
   def destroy
     # TODO
@@ -32,11 +43,14 @@ class AnnoncesController < ApplicationController
   end
 
   def mine
-    @annonces = Annonce.where(user_id: current_user.id)
+    # @annonces = Annonce.where(user_id: current_user.id)
+
+    @annonces = current_user.annonces
   end
 
   def archiver
-    @annonce = Annonce.find_by(id: params[:id])
+    @annonce = current_user.annonces.find params[:id]
+    # @annonce = Annonce.find_by(id: params[:id])
     @annonce.update_attributes(archive: true)
     @annonce.save
     redirect_to action: 'mine'

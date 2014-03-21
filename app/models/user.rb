@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
 
   acts_as_messageable
 
+  has_many :annonces
+  
   has_attached_file :avatar, {
     :styles => {
       :thumb => ["50x50#", :png],
@@ -19,7 +21,7 @@ class User < ActiveRecord::Base
   }
 
   def self.annonce_weekly
-
       #Code pour envoyer mail à tous les users
+      
   end
 end

@@ -38,34 +38,34 @@
       .panel-body
         = form_tag("/annonces/contact", method: "post") do
           .form-group
-            %input#id.form-control{type: 'hidden', value:@annonces[0]["user_id"], name: 'user_id'}
+            %input#id.form-control{type: 'hidden', value:@annonce["user_id"], name: 'user_id'}
             %label{for: "exampleInputPassword1"} Message
             %textarea#description.form-control{rows: "8", name: "message"}
           .form-group
             %button.btn.btn-default{type: "submit"} Envoyer
     .panel.panel-default
       .panel-heading
-        %p= @annonces[0]["title"]
+        %p= @annonce["title"]
       .panel-body
-        %img{src: @annonces[0].picture.url(:large)}
+        %img{src: @annonce.picture.url(:large)}
     .panel.panel-default
       .panel-body
-        %p= @annonces[0]["price"]
+        %p= @annonce["price"]
     .panel.panel-default
       .panel-body
-        %p= @annonces[0]["description"]
+        %p= @annonce["description"]
   .col-sm-4
-    - if @annonces[0]["user_id"] == current_user.id
+    - if @displayed_by_owner
       .panel.panel-default
         .panel-heading
           %p
             Gerer        
         .panel-body
-          %button.btn.btn-primary.btn-lg.btn-block{onclick: "modifier("+@annonces[0]["id"].to_s+")" }
+          %button.btn.btn-primary.btn-lg.btn-block{onclick: "modifier("+@annonce["id"].to_s+")" }
             Modifier l'annonce
-          %button.btn.btn-warning.btn-lg.btn-block{onclick: "archiver("+@annonces[0]["id"].to_s+")" }
+          %button.btn.btn-warning.btn-lg.btn-block{onclick: "archiver("+@annonce["id"].to_s+")" }
             Archiver l'annonce
-          %button.btn.btn-danger.btn-lg.btn-block{onclick: "supprimer("+@annonces[0]["id"].to_s+")" }
+          %button.btn.btn-danger.btn-lg.btn-block{onclick: "supprimer("+@annonce["id"].to_s+")" }
             Supprimer l'annonce
     -else
       .panel.panel-default
@@ -75,13 +75,13 @@
         .panel-body
           %p
             %i.fa.fa-user
-            = @prop[0]['username']
+            = @owner['username']
           %p
             %i.fa.fa-phone
-            = @prop[0]['firstname']
+            = @owner['firstname']
           %p
             %i.fa.fa-envelope
-            = @prop[0]['email']
+            = @owner['email']
           %button.btn.btn-primary.btn-lg.btn-block.contact
             Contacter
       .panel.panel-default
@@ -89,7 +89,7 @@
           %p
             Signaler      
         .panel-body    
-          %button.btn.btn-danger.btn-lg.btn-block{onclick: "signaler("+@annonces[0]["id"].to_s+")" }
+          %button.btn.btn-danger.btn-lg.btn-block{onclick: "signaler("+@annonce["id"].to_s+")" }
             Signaler l'annonce
 
 :javascript
