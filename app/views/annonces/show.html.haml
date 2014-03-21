@@ -1,4 +1,5 @@
 :javascript
+  console.log(window.location.pathname);
   function supprimer (id)
   {
     bootbox.confirm("Are you sure?", function(result){
@@ -17,7 +18,8 @@
 
   function modifier(id)
   {
-        location.href='/annonces/modify?id='+id;
+
+        location.href=window.location.pathname+'/edit';
   }
 
   function signaler(id){

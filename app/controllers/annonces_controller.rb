@@ -56,8 +56,9 @@ public
     redirect_to action: 'mine'
   end
   
-  def modify  
-    @annonce = Annonce.find_by(id: params[:id])
+  def modify 
+    @annonce = Annonce.find_by(id: params[:annonce_id])
+    puts @annonce
   end
 
   def update

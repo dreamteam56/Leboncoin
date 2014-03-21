@@ -3,7 +3,7 @@ Leboncoin::Application.routes.draw do
   # get "annonces/index"
   # get "annonces/show"
   # get "annonces/new"
-  post "annonces/create"
+  # post "annonces/create"
   get "annonces/destroy"
   get "annonces/mine"
   get "annonces/archiver"
@@ -22,19 +22,21 @@ Leboncoin::Application.routes.draw do
   resources :annonces do
         get 'show'
         get 'index'
+        get 'new'
+        post 'create'
+        get 'edit' => 'annonces#modify' 
 
-
-    member do
-      get 'new'     
-      # put 'archiver'
-    end
+    # member do
+          
+    #   # put 'archiver'
+    # end
   end
 
-  resources :users do
-    resources :annonces do
-      get 'index'
-    end   
-  end
+  # resources :users do
+  #   resources :annonces do
+  #     get 'index'
+  #   end   
+  # end
   #devise_for :users
   #root 'annonces#index'
   # The priority is based upon order of creation: first created -> highest priority.
