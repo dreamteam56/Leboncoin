@@ -1,28 +1,27 @@
 Leboncoin::Application.routes.draw do
   devise_for :users
-  # get "annonces/index"
-  # get "annonces/show"
-  # get "annonces/new"
-  # post "annonces/create"
-  get "annonces/destroy"
-  get "annonces/mine"
-  # get "annonces/archiver"
-  get "annonces/activer"
-  # get "annonces/modify"
-  post "annonces/update"
-  get "annonces/signaler"
-  post "annonces/chercher"
-  post "annonces/contact"
+
+  # post "annonces/contact"
 
   get "mailbox/sent"
 
   resources :annonces do
-        get 'show'
-        get 'index'
-        get 'new'
+        
+        
         post 'create'
-        get 'edit' => 'annonces#modify' 
-        patch 'archiver' => 'annonces#archiver'
+        
+        member do
+          delete 'destroy'
+          get 'edit' => 'annonces#modify'
+          get 'signaler'
+          post 'contact'
+        end
+
+        collection do
+          post "chercher"
+          get 'mine'
+        end
+        # patch 'archiver' => 'annonces#archiver'
   end
 
   resources :mailbox do

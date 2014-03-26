@@ -7,20 +7,42 @@
     })
   }
 
+
+
   function archiver(id)
   {
     bootbox.confirm("Are you sure you want to archive it?",function(result){
       if(result)
-        location.href='/annonces/archiver?id='+id;
-    })
+        $.ajax({
+          headers: {
+            'X-CSRF-Token': $("meta[name='csrf-token']").attr("content")
+          },
+          url: '/annonces/'+id,
+          type: 'PATCH',
+          data: {archive: true},
+          success: function(result){
+            location.href='/annonces/mine'
+          }
+        });
+    });
   }
 
   function activer(id)
   {
     bootbox.confirm("Are you sure you want to unable it?",function(result){
       if(result)
-        location.href='/annonces/activer?id='+id;
-    })
+        $.ajax({
+          headers: {
+            'X-CSRF-Token': $("meta[name='csrf-token']").attr("content")
+          },
+          url: '/annonces/'+id,
+          type: 'PATCH',
+          data: {archive: false},
+          success: function(result){
+            location.href='/annonces/mine'
+          }
+        });
+    });
   }
 .row
   - @annonces.each do |annonce|

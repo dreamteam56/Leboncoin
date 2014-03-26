@@ -1,6 +1,6 @@
 class AnnoncesController < ApplicationController
 
-  before_action :authenticate_user!, only: %w(mine destroy archiver activer modify contact signaler)
+  before_action :authenticate_user!, only: %w(mine destroy modify contact signaler show)
 
 protected
 
@@ -38,27 +38,11 @@ public
   end
 
   def mine
-    # @annonces = Annonce.where(user_id: current_user.id)
-
     @annonces = current_user.annonces
-  end
-
-  def archiver
-    puts "Dans la fonction archiver"
-    @annonce = current_user.annonces.find params[:id]
-    @annonce.update_attributes(archive: true)
-    redirect_to action: 'mine'
-  end
-
-  def activer
-    @annonce = Annonce.find_by(id: params[:id])
-    @annonce.update_attributes(archive: false)
-    @annonce.save
-    redirect_to action: 'mine'
   end
   
   def modify 
-    @annonce = Annonce.find_by(id: params[:annonce_id])
+    @annonce = Annonce.find_by(id: params[:id])
     puts @annonce
   end
 
@@ -66,10 +50,9 @@ public
     @annonce = Annonce.find(params[:id])
     if params[:archive].present?
       @annonce.update_attributes(archive: params[:archive])
+    else
+      @annonce.update_attributes(title: params[:title], description: params[:description], price: params[:price])
     end
-    # @annonce.update_attributes(title: params[:title])
-    # @annonce.update_attributes(description: params[:description])
-    # @annonce.update_attributes(price: params[:price])
     # @annonce.update_attributes(picture: params[:picture])
     redirect_to status: 303
   end

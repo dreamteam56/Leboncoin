@@ -4,7 +4,16 @@
   {
     bootbox.confirm("Are you sure?", function(result){
       if(result)
-        location.href='/annonces/destroy?id='+id;
+        $.ajax({
+          headers: {
+            'X-CSRF-Token': $("meta[name='csrf-token']").attr("content")
+          },
+          url: window.location.pathname,
+          type: 'DELETE',
+          success: function(result){
+            location.href='/annonces'
+          }
+        });
     })
   }
 
@@ -21,7 +30,7 @@
           type: 'PATCH',
           data: {archive: true},
           success: function(result){
-            location.reload()
+            location.href='/annonces'
           }
         });
     });
@@ -36,7 +45,7 @@
   function signaler(id){
     bootbox.confirm("Etes-vous sur de vouloir signaler cette annonce ? ", function(result){
       if(result)
-        location.href='/annonces/signaler?id='+id;
+        location.href= window.location.pathname+"/signaler";
     });
   }
 
