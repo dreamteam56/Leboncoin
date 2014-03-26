@@ -1,7 +1,7 @@
 class Annonce < ActiveRecord::Base
 
-  has_many :assets, :dependent => :destroy
-  accepts_nested_attributes_for :assets, :allow_destroy => true
+  has_many :uploads, :dependent => :destroy
+  accepts_nested_attributes_for :uploads, :allow_destroy => true
   # has_attached_file :picture, {
   #   :styles => {
   #     :thumb => ["50x50#", :png],
