@@ -6,7 +6,7 @@
   </div>
   <div class="panel-body">
     <div class="row">
-      <%= form_for Annonce.new, url: {action: "create"},html: {class: "form-control",multipart: true} do |a| %>
+      <%= form_for Annonce.new,:html => {:multipart => :true} do |a| %>
         <div class="col-sm-6">
           <div class="form-group">
             <%= a.label :title %> 
@@ -14,9 +14,11 @@
             <%= hidden_field_tag 'user_id', current_user.id %>
           </div>
           <div class="form-group">
-            <%= a.fields_for :assets do |asset| %>
-              <% if asset.object.new_record? %>
-                <%= asset.file_field :picture,:multiple => true %>
+            <%= a.fields_for :uploads do |up| %>
+              <% if up.object.new_record? %>
+                <p>
+                  <%= up.file_field :picture %>
+                </p>
               <% end %>
             <% end %>
           </div>

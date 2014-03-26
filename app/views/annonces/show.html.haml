@@ -69,8 +69,8 @@
       .panel-heading
         %p= @annonce["title"]
       .panel-body
-      / - for asset in @annonce.assets 
-      /   = link_to image_tag(asset.asset.url(:thumb)), asset.asset.url(:original) 
+      / - for upload in @annonce.uploads 
+      /   = link_to image_tag(upload.picture.url(:thumb)), upload.picture.url(:original) 
     .panel.panel-default
       .panel-body
         %p= @annonce["price"]
