@@ -51,6 +51,7 @@ test:
   username: leboncoin
   password: leboncoin
   host: localhost
+  
 production:
   adapter: postgresql
   encoding: unicode
