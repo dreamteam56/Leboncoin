@@ -11,7 +11,7 @@ Leboncoin::Application.routes.draw do
         post 'create'
         
         member do
-          delete 'destroy'
+          delete 'delete'
           get 'edit' => 'annonces#modify'
           get 'signaler'
           post 'contact'

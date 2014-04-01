@@ -69,8 +69,8 @@
       .panel-heading
         %p= @annonce["title"]
       .panel-body
-      / - for upload in @annonce.uploads 
-      /   = link_to image_tag(upload.picture.url(:thumb)), upload.picture.url(:original) 
+        - for picture in @pictures
+          = link_to image_tag(picture.picture.url(:thumb)), picture.picture.url(:original) 
     .panel.panel-default
       .panel-body
         %p= @annonce["price"]
@@ -88,8 +88,7 @@
             Modifier l'annonce
           %button.btn.btn-warning.btn-lg.btn-block{onclick: "archiver("+@annonce["id"].to_s+")" }
             Archiver l'annonce
-          %button.btn.btn-danger.btn-lg.btn-block{onclick: "supprimer("+@annonce["id"].to_s+")" }
-            Supprimer l'annonce
+          = button_to "Supprimer l'annonce", annonce_path, :method=>:delete, class: "btn btn-danger btn-lg btn-block", confirm: "Etes vous sur ?"
     -else
       .panel.panel-default
         .panel-heading
