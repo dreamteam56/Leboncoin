@@ -6,7 +6,7 @@
   </div>
   <div class="panel-body">
     <div class="row">
-      <%= form_for Annonce.new,:html => {:multipart => :true} do |a| %>
+      <%= form_for @annonce,:html => {:multipart => true} do |a| %>
         <div class="col-sm-6">
           <div class="form-group">
             <%= a.label :title %> 
@@ -14,13 +14,7 @@
             <%= hidden_field_tag 'user_id', current_user.id %>
           </div>
           <div class="form-group">
-            <%= a.fields_for :uploads do |up| %>
-              <% if up.object.new_record? %>
-                <p>
-                  <%= up.file_field :picture %>
-                </p>
-              <% end %>
-            <% end %>
+            <%= file_field_tag('annonce_uploads_attributes_uploads', multiple: true, name: "annonce[uploads_attributes][][picture]") %>
             <p>
               salut
             </p>

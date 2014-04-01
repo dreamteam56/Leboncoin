@@ -1,6 +1,6 @@
 class Asset < ActiveRecord::Base
 
-    belongs_to :article
+    belongs_to :annonce
     has_attached_file :picture ,
       :styles => {
         :thumb=> "100x100#",

@@ -5,7 +5,7 @@ class AnnoncesController < ApplicationController
 protected
 
   def annonce_params
-    params.require(:annonce).permit(:picture,:title,:description,:user_id,:price)
+    params.require(:annonce).permit(:picture,:title,:description,:user_id,:price,:uploads_attributes => [:picture])
   end
 
 public
@@ -21,14 +21,26 @@ public
   end
 
   def new
+    @annonce = Annonce.new()
+    @annonce.uploads.build
+
   end
 
   def create
     @annonce = Annonce.new(annonce_params)
-    5.times {@annonce.assets.build}
-   # @annonce.archive = false
-   # @annonce.user_id = params[:user_id]
-   # @annonce.save
+    puts annonce_params
+    
+    @annonce.archive = false
+    @annonce.user_id = params[:user_id]
+    if @annonce.save
+        params[:uploads_attributes].to_a.each do |picture|      
+          puts picture
+          @annonce.uploads.create(:picture => picture)
+        #@user.images.create(:avatar=> picture)
+        # Don't forget to mention :avatar(field name)
+
+      end
+    end
     redirect_to action: 'mine'
   end
   
