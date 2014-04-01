@@ -6,7 +6,7 @@
   </div>
   <div class="panel-body">
     <div class="row">
-      <%= form_for Annonce.new,:html => {:multipart => :true} do |a| %>
+      <%= form_for Annonce.new, :html => {:multipart => true} do |a| %>
         <div class="col-sm-6">
           <div class="form-group">
             <%= a.label :title %> 
