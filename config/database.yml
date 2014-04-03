@@ -51,10 +51,13 @@ test:
   username: leboncoin
   password: leboncoin
   host: localhost
+  
 production:
   adapter: postgresql
   encoding: unicode
-  database: Leboncoin_production
+  host: ec2-23-21-170-57.compute-1.amazonaws.com
+  database: d25vibj2dm7r7a
   pool: 5
-  username: leboncoin
-  password: leboncoin
+  port: 5432
+  username: klyycvdxjkzfwg
+  password: c92U1kRKpihYOfSvIjLKtvqnMk

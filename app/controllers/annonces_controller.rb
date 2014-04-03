@@ -1,11 +1,11 @@
 class AnnoncesController < ApplicationController
 
-  before_action :authenticate_user!, only: %w(mine destroy archiver activer modify contact signaler)
+  before_action :authenticate_user!, only: %w(mine destroy modify contact signaler show)
 
 protected
 
   def annonce_params
-    params.require(:annonce).permit(:picture,:title,:description,:user_id,:price)
+    params.require(:annonce).permit(:picture,:title,:description,:user_id,:price,:uploads_attributes => [:picture])
   end
 
 public
@@ -21,14 +21,26 @@ public
   end
 
   def new
+    @annonce = Annonce.new()
+    @annonce.uploads.build
+
   end
 
   def create
     @annonce = Annonce.new(annonce_params)
-    5.times {@annonce.assets.build}
-   # @annonce.archive = false
-   # @annonce.user_id = params[:user_id]
-   # @annonce.save
+    puts annonce_params
+    
+    @annonce.archive = false
+    @annonce.user_id = params[:user_id]
+    if @annonce.save
+        params[:uploads_attributes].to_a.each do |picture|      
+          puts picture
+          @annonce.uploads.create(:picture => picture)
+        #@user.images.create(:avatar=> picture)
+        # Don't forget to mention :avatar(field name)
+
+      end
+    end
     redirect_to action: 'mine'
   end
   
@@ -38,27 +50,11 @@ public
   end
 
   def mine
-    # @annonces = Annonce.where(user_id: current_user.id)
-
     @annonces = current_user.annonces
-  end
-
-  def archiver
-    puts "Dans la fonction archiver"
-    @annonce = current_user.annonces.find params[:id]
-    @annonce.update_attributes(archive: true)
-    redirect_to action: 'mine'
-  end
-
-  def activer
-    @annonce = Annonce.find_by(id: params[:id])
-    @annonce.update_attributes(archive: false)
-    @annonce.save
-    redirect_to action: 'mine'
   end
   
   def modify 
-    @annonce = Annonce.find_by(id: params[:annonce_id])
+    @annonce = Annonce.find_by(id: params[:id])
     puts @annonce
   end
 
@@ -66,10 +62,9 @@ public
     @annonce = Annonce.find(params[:id])
     if params[:archive].present?
       @annonce.update_attributes(archive: params[:archive])
+    else
+      @annonce.update_attributes(title: params[:title], description: params[:description], price: params[:price])
     end
-    # @annonce.update_attributes(title: params[:title])
-    # @annonce.update_attributes(description: params[:description])
-    # @annonce.update_attributes(price: params[:price])
     # @annonce.update_attributes(picture: params[:picture])
     redirect_to status: 303
   end

@@ -4,7 +4,7 @@
       Modifier une annonce
   .panel-body
     .row
-      = form_tag("/annonces/update", method: "post") do
+      = form_tag('/annonces/'+@annonce["id"].to_s, method: "put") do
         .col-sm-6
           .form-group
             %label{for: "exampleInputEmail1"} Titre
