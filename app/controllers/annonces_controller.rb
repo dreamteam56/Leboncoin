@@ -80,7 +80,7 @@ public
   end
 
   def chercher
-    @annonces = Annonce.where("title like ?",'%'+params[:title]+'%')
+    @annonces = Annonce.where("title like ?",'%'+params[:title]+'%').paginate(:page => params[:page], :per_page => 9)
     render :action => :index
   end
 
