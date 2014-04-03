@@ -11,14 +11,14 @@ protected
 public
 
   def index
-    @annonces = Annonce.where(archive: false)
+    @annonces = Annonce.where(archive: false).paginate(:page => params[:page], :per_page => 9)
   end
 
   def show
     @annonce = Annonce.find params[:id]
     @owner = @annonce.user
     @pictures = @annonce.uploads
-    puts @annonce.uploads[0].picture
+    #puts @annonce.uploads[0].picture
     @displayed_by_owner = @annonce.is_owned_by?(current_user)
   end
 

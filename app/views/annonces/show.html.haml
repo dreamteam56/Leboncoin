@@ -72,7 +72,7 @@
         %ul.rslides
           -for picture in @pictures
             %li
-              = image_tag(picture.picture.url(:thumb))
+              = image_tag(picture.picture.url(:large))
         %ul.rslides-pager
           - for picture in @pictures
             %li.slides_s
