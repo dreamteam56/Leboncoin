@@ -17,6 +17,8 @@ public
   def show
     @annonce = Annonce.find params[:id]
     @owner = @annonce.user
+    @pictures = @annonce.uploads
+    puts @annonce.uploads[0].picture
     @displayed_by_owner = @annonce.is_owned_by?(current_user)
   end
 
@@ -45,8 +47,8 @@ public
   end
   
   def destroy
-    Annonce.destroy(params[:id])
-    redirect_to action: 'index'
+    Annonce.find(params[:id]).destroy()
+    redirect_to action: 'mine'
   end
 
   def mine

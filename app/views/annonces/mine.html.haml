@@ -3,7 +3,17 @@
   {
     bootbox.confirm("Are you sure?", function(result){
       if(result)
-        location.href='/annonces/destroy?id='+id;
+        $.ajax({
+          headers: {
+            'X-CSRF-Token': $("meta[name='csrf-token']").attr("content")
+          },
+          url: '/annonces/'+id,
+          type: 'DELETE',
+          data: {archive: true},
+          success: function(result){
+            location.href='/annonces/mine'
+          }
+        });
     })
   }
 

@@ -1,5 +1,4 @@
 :javascript
-  console.log(window.location.pathname);
   function supprimer (id)
   {
     bootbox.confirm("Are you sure?", function(result){
@@ -47,6 +46,7 @@
       if(result)
         location.href= window.location.pathname+"/signaler";
     });
+
   }
 
 .row
@@ -69,8 +69,15 @@
       .panel-heading
         %p= @annonce["title"]
       .panel-body
-      / - for upload in @annonce.uploads 
-      /   = link_to image_tag(upload.picture.url(:thumb)), upload.picture.url(:original) 
+        %ul.rslides
+          -for picture in @pictures
+            %li
+              = image_tag(picture.picture.url(:thumb))
+        %ul.rslides-pager
+          - for picture in @pictures
+            %li.slides_s
+
+            = link_to image_tag(picture.picture.url(:thumb)), '#'
     .panel.panel-default
       .panel-body
         %p= @annonce["price"]
@@ -88,8 +95,7 @@
             Modifier l'annonce
           %button.btn.btn-warning.btn-lg.btn-block{onclick: "archiver("+@annonce["id"].to_s+")" }
             Archiver l'annonce
-          %button.btn.btn-danger.btn-lg.btn-block{onclick: "supprimer("+@annonce["id"].to_s+")" }
-            Supprimer l'annonce
+          = button_to "Supprimer l'annonce", annonce_path, :method=>:delete, class: "btn btn-danger btn-lg btn-block", data: {confirm:"Etes vous sur ?"}
     -else
       .panel.panel-default
         .panel-heading
@@ -117,6 +123,14 @@
 
 :javascript
   $(document).ready(function(){
+    $(function() {
+        $(".rslides").responsiveSlides({
+        manualControls: '.rslides-pager',
+        maxwidth: 400,
+        maxheight: 200,
+        speed: 800
+        });
+      });
 
     $( ".contact" ).click(function() {
       $( ".contact_form" ).show( 1000 );
@@ -127,5 +141,4 @@
       $( ".contact_form" ).hide( 2000 );
       $(".contact").removeClass("disabled");
     });
-
   });
