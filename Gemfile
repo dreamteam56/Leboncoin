@@ -9,6 +9,7 @@ gem 'pg'
 gem 'devise'
 
 gem 'haml-rails'
+gem "twitter-bootstrap-rails"
 
 gem 'mailboxer'
 

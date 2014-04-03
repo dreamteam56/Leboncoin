@@ -5,7 +5,10 @@
         .panel-body
           .row
             .col-sm-4
-            
+              - if annonce.uploads[0].nil?
+                %img
+              - else
+                = image_tag(annonce.uploads[0].picture(:thumb))            
             - if user_signed_in?
               %a{href: "/annonces/"+ annonce["id"].to_s}= annonce["title"]
               .col-sm-8
@@ -13,4 +16,8 @@
                   =annonce['price']
                   %i.fa.fa-eur
             -else
-              %h2= annonce["title"]
+              %a{href: "/users/sign_in"}= annonce["title"]
+              .col-sm-8
+                %h3
+                  =annonce['price']
+                  %i.fa.fa-eur              
