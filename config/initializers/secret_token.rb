@@ -11,3 +11,4 @@
 # if you're sharing your code publicly.
 secret = Rails.env.production? ? ENV['SECRET_TOKEN'] : "top_secret_token"
 Leboncoin::Application.config.secret_key_base = secret
+Paperclip::Attachment.default_options[:s3_host_name] = 's3-us-west-2.amazonaws.com'
