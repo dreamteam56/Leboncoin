@@ -72,6 +72,10 @@ public
   end
 
   def signaler 
+    #Recuperer l'annonce signaler
+    annonce = Annonce.find(params[:id])
+    @titre = annonce["title"]
+    #Envoie du mail à l'admin
     @admins = User.where(admin: true)
     puts @admins[0]["email"]
     ModelMailer.signal_annonce(@admins).deliver

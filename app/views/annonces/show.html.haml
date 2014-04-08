@@ -44,7 +44,7 @@
   function signaler(id){
     bootbox.confirm("Etes-vous sur de vouloir signaler cette annonce ? ", function(result){
       if(result)
-        location.href= window.location.pathname+"/signaler";
+        location.href= window.location.pathname+"/signaler?id="+id;
     });
 
   }
