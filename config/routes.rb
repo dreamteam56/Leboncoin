@@ -85,7 +85,13 @@ Leboncoin::Application.routes.draw do
 
   namespace :admin do
     resources :annonces do
-      member do
+      collection do
+        get 'index'
+      end
+    end
+
+    resources :users do
+      collection do
         get 'index'
       end
     end

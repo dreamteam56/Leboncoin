@@ -1,0 +1,24 @@
+.row
+  %table.table.table-bordered.table-striped
+    %thead
+      %tr
+        %th #
+        %th Nom
+        %th Email
+        %th Derniere connexion
+        %th Options
+    %tbody
+    - @users.each do |user|
+      %tr
+        %td
+          = user['id']
+        %td 
+          = user['username']
+        %td
+          = user['email']
+        %td
+          = user['last_sign_in_at'].strftime("%d %b. %Y")
+        %td
+          = button_to "Supprimer", "/admin/users/"+user['id'].to_s, :method=>:delete, class: "btn btn-danger btn-xs", data: {confirm:"Etes vous sur ?"}
+.text-center
+  = will_paginate @annonces, renderer: BootstrapPagination::Rails
