@@ -1,0 +1,6 @@
+.row
+  - @annonces.each do |annonce|
+    %p
+      = annonce['title']
+.text-center
+  = will_paginate @annonces, renderer: BootstrapPagination::Rails

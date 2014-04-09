@@ -17,7 +17,6 @@ Leboncoin::Application.routes.draw do
           post "chercher"
           get 'mine'
         end
-        # patch 'archiver' => 'annonces#archiver'
   end
 
   resources :mailbox do
@@ -27,6 +26,7 @@ Leboncoin::Application.routes.draw do
       get 'sent'
     end
   end
+
 
   # resources :users do
   #   resources :annonces do
@@ -83,6 +83,13 @@ Leboncoin::Application.routes.draw do
   #   resources :posts, concerns: :toggleable
   #   resources :photos, concerns: :toggleable
 
+  namespace :admin do
+    resources :annonces do
+      member do
+        get 'index'
+      end
+    end
+  end
   # Example resource route within a namespace:
   #   namespace :admin do
   #     # Directs /admin/products/* to Admin::ProductsController
