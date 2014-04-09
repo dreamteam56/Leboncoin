@@ -88,10 +88,14 @@
         .panel-body
           %p
             %i.fa.fa-user
-            = @owner['username']
+            - if @owner['username'].nil?
+            -else
+              = @owner['username']
           %p
             %i.fa.fa-phone
-            = @owner['firstname']
+            - if @owner['firstname'].nil?
+            -else
+              = @owner['firstname']
           %p
             %i.fa.fa-envelope
             = @owner['email']
