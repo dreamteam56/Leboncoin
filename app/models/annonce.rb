@@ -16,7 +16,7 @@ class Annonce < ActiveRecord::Base
   # validates_attachment_content_type :picture, :content_type => ["image/png","image/jpg","image/jpeg","image/gif"]
 
   belongs_to :user
-
+  has_one :category
   def is_owned_by?(other_user)
     other_user && other_user.id == user_id
   end
