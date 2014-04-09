@@ -43,11 +43,13 @@ public
 
       end
     end
+    flash[:notice] = "Annonce crée"
     redirect_to action: 'mine'
   end
   
   def destroy
     Annonce.find(params[:id]).destroy()
+    flash[:notice] = "Annonce supprimé"
     redirect_to action: 'mine'
   end
 
@@ -68,6 +70,7 @@ public
       @annonce.update_attributes(title: params[:title], description: params[:description], price: params[:price])
     end
     # @annonce.update_attributes(picture: params[:picture])
+    flash[:notice] = "Annonce modifié"
     redirect_to status: 303
   end
 
@@ -79,6 +82,7 @@ public
     @admins = User.where(admin: true)
     puts @admins[0]["email"]
     ModelMailer.signal_annonce(@admins).deliver
+    flash[:notice] = "Annonce signalé"
     redirect_to action: 'index'
     
   end
@@ -91,6 +95,7 @@ public
   def contact
     @receiver = User.find_by(id: params[:user_id])
     current_user.send_message(@receiver,params["message"],'nom de annonce')
+    flash[:notice] = "Message délivré"
     redirect_to action: 'index'
   end
 end
