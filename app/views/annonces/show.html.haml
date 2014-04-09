@@ -1,20 +1,4 @@
 :javascript
-  function supprimer (id)
-  {
-    bootbox.confirm("Are you sure?", function(result){
-      if(result)
-        $.ajax({
-          headers: {
-            'X-CSRF-Token': $("meta[name='csrf-token']").attr("content")
-          },
-          url: window.location.pathname,
-          type: 'DELETE',
-          success: function(result){
-            location.href='/annonces'
-          }
-        });
-    })
-  }
 
 
   function archiver(id)

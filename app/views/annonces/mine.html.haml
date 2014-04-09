@@ -58,15 +58,13 @@
   - @annonces.each do |annonce|
     .col-sm-4
       .panel.panel-default
+        = button_to "×", "/annonces/"+annonce['id'].to_s, :method=>:delete, class: "close", data: {confirm:"Etes vous sur ?"}
         .panel-body
           .row
             .col-sm-4
               %img{src:""+ annonce["url"].to_s, style: "width:80px; height:90px;"}
             - if user_signed_in?
               %p= annonce["title"]
-              .col-sm-2
-                %button.btn.btn-primary.btn-xs
-                  Modifier
               .col-sm-2
                 - if annonce["archive"] == false
                   %button.btn.btn-warning.btn-xs{onclick: "archiver("+annonce["id"].to_s+")" }
@@ -75,8 +73,7 @@
                   %button.btn.btn-warning.btn-xs{onclick: "activer("+annonce["id"].to_s+")" }
                     Activer           
               .col-sm-2
-                %button.btn.btn-danger.btn-xs{onclick: "supprimer("+annonce["id"].to_s+")" }
-                  Supprimer
+                = button_to "Voir","/annonces/"+annonce['id'].to_s, :method=>:get, class: "btn btn-xs btn-primary"
             -else
               %h2= annonce["title"]
 

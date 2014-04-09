@@ -1,10 +1,6 @@
 Leboncoin::Application.routes.draw do
   devise_for :users
 
-  # post "annonces/contact"
-
-  get "mailbox/sent"
-
   resources :annonces do
         
         
@@ -27,6 +23,9 @@ Leboncoin::Application.routes.draw do
   resources :mailbox do
     get 'index'
     get 'show'
+    collection do
+      get 'sent'
+    end
   end
 
   # resources :users do
