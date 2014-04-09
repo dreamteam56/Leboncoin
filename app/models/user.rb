@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   acts_as_messageable
 
   has_many :annonces
+  has_one :category
   
   has_attached_file :avatar, {
     :styles => {
