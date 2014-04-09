@@ -48,6 +48,17 @@
             <li><a href="/mailbox" class="navbar-link">Message</a></li>
           </ul>
         </li>
+        <% if current_user.admin? %>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administration <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="/admin/annonces" class="navbar-link">Gérer Annonces</a></li>
+              <li><a href="/annonces/mine" class="navbar-link">Gérer Catégories</a></li>
+              <li><a href="/mailbox" class="navbar-link">Ajouter Catégorie</a></li>
+              <li><a href="/mailbox" class="navbar-link">Gérer Utilisateur</a></li>
+            </ul>
+          </li>         
+        <%end%>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
