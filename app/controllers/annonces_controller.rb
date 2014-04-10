@@ -91,6 +91,7 @@ public
   end
 
   def chercher
+    @categories = Category.all
     id_category = Category.where("name like ?",'%'+params[:categ]+'%')
     @annonces = Annonce.where("title like ? AND category_id = ?",'%'+params[:title]+'%',id_category[0]['id']).paginate(:page => params[:page], :per_page => 9)
     render :action => :index
