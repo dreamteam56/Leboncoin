@@ -62,7 +62,10 @@
         .panel-body
           .row
             .col-sm-4
-              %img{src:""+ annonce["url"].to_s, style: "width:80px; height:90px;"}
+              - if annonce.uploads[0].nil?
+                %img{src:"https://s3-us-west-2.amazonaws.com/leboncoin/close_delete_remove_exit_cross-128.png", style: "width:80px; height:90px;"}
+              - else
+                = image_tag(annonce.uploads[0].picture(:thumb))
             - if user_signed_in?
               %p= annonce["title"]
               .col-sm-2

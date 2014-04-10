@@ -1,0 +1,25 @@
+.row
+  .col-lg-6
+    %table.table.table-bordered.table-striped
+      %thead
+        %tr
+          %th #
+          %th Nom
+          %th Options
+      %tbody
+      - @categories.each do |category|
+        %tr
+          %td
+            = category['id']
+          %td 
+            = category['name']
+          %td
+  .col-lg-6
+    = form_tag('/admin/categories') do
+      .form-group
+        %label Nom de la catégorie
+        %input#name.form-control{name: "name"}
+      .form-group
+        %button.btn.btn-default{type: "submit"} Ajouter
+.text-center
+  = will_paginate @categories, renderer: BootstrapPagination::Rails

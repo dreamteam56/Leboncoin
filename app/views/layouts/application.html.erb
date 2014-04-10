@@ -53,8 +53,7 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administration <b class="caret"></b></a>
             <ul class="dropdown-menu">
               <li><a href="/admin/annonces" class="navbar-link">Gérer Annonces</a></li>
-              <li><a href="/annonces/mine" class="navbar-link">Gérer Catégories</a></li>
-              <li><a href="/mailbox" class="navbar-link">Ajouter Catégorie</a></li>
+              <li><a href="/admin/categories" class="navbar-link">Gérer Catégories</a></li>
               <li><a href="/admin/users" class="navbar-link">Gérer Utilisateurs</a></li>
             </ul>
           </li>         
@@ -66,7 +65,7 @@
           <%= form_tag("/annonces/chercher", method: "post", class: "navbar-form navbar-left") do %>
             <div class="form-group">
               <input class="form-control" id="title" name="title" type="text" />
-              <%= select_tag 'categ' => options_for_select(Category.all.map {|c| [c.name]}), :id => "category" %>
+              <%= select_tag 'categ', options_for_select(Category.all.collect {|c| [c.name]}), :id => "category", :class => "form-control" %>
             </div>
             <button type="submit" class="btn btn-default"><i class="fa fa-search"></i> Rechercher </button>
           <% end %>

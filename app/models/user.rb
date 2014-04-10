@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
   acts_as_messageable
 
-  has_many :annonces
+  has_many :annonces, :dependent => :destroy
 
   has_attached_file :avatar, {
     :styles => {

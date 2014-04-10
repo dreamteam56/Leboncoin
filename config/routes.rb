@@ -95,6 +95,12 @@ Leboncoin::Application.routes.draw do
         get 'index'
       end
     end
+
+    resources :categories do
+      collection do
+        get 'index'
+      end
+    end
   end
   # Example resource route within a namespace:
   #   namespace :admin do
