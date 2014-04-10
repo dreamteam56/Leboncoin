@@ -5,7 +5,7 @@ class AnnoncesController < ApplicationController
 protected
 
   def annonce_params
-    params.require(:annonce).permit(:picture,:title,:description,:user_id,:price,:uploads_attributes => [:picture])
+    params.require(:annonce).permit(:picture,:title,:description,:category_id,:user_id,:price,:uploads_attributes => [:picture])
   end
 
 public
@@ -23,6 +23,9 @@ public
   end
 
   def new
+
+    @categories = Category.all
+    puts @categories
     @annonce = Annonce.new()
     @annonce.uploads.build
 
@@ -34,13 +37,11 @@ public
     
     @annonce.archive = false
     @annonce.user_id = params[:user_id]
+    @annonce.category_id = params[:category_id]
     if @annonce.save
         params[:uploads_attributes].to_a.each do |picture|      
           puts picture
           @annonce.uploads.create(:picture => picture)
-        #@user.images.create(:avatar=> picture)
-        # Don't forget to mention :avatar(field name)
-
       end
     end
     flash[:notice] = "Annonce crée"
@@ -82,12 +83,15 @@ public
     @admins = User.where(admin: true)
     puts @admins[0]["email"]
     ModelMailer.signal_annonce(@admins).deliver
+    annonce.update_attributes(signaler: true)
     flash[:notice] = "Annonce signalé"
     redirect_to action: 'index'
     
   end
 
   def chercher
+    id_category = Category.where("name like ?",'%'+params[:categ]+'%')
+    puts id_category[0]['id']
     @annonces = Annonce.where("title like ?",'%'+params[:title]+'%').paginate(:page => params[:page], :per_page => 9)
     render :action => :index
   end

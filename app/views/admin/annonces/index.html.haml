@@ -10,19 +10,35 @@
         %th Options
     %tbody
     - @annonces.each do |annonce|
-      %tr
-        %td
-          = annonce['id']
-        %td 
-          = annonce['title']
-        %td
-          = annonce['price']
-        %td
-          
-        %td
-          = annonce['created_at'].strftime("%d %b. %Y")
-        %td
-          = button_to "Voir", annonce_path(annonce['id'].to_s), :method=>:get, class: "btn btn-primary btn-xs"         
-          = button_to "Supprimer", "/admin/annonces/"+annonce['id'].to_s, :method=>:delete, class: "btn btn-danger btn-xs", data: {confirm:"Etes vous sur ?"}
+      - if annonce['signaler']
+        %tr{class: "danger"}
+          %td
+            = annonce['id']
+          %td 
+            = annonce['title']
+          %td
+            = annonce['price']
+          %td
+            
+          %td
+            = annonce['created_at'].strftime("%d %b. %Y")
+          %td
+            = button_to "Voir", annonce_path(annonce['id'].to_s), :method=>:get, class: "btn btn-primary btn-xs"         
+            = button_to "Supprimer", "/admin/annonces/"+annonce['id'].to_s, :method=>:delete, class: "btn btn-danger btn-xs", data: {confirm:"Etes vous sur ?"}
+      - else
+        %tr
+          %td
+            = annonce['id']
+          %td 
+            = annonce['title']
+          %td
+            = annonce['price']
+          %td
+            
+          %td
+            = annonce['created_at'].strftime("%d %b. %Y")
+          %td
+            = button_to "Voir", annonce_path(annonce['id'].to_s), :method=>:get, class: "btn btn-primary btn-xs"         
+            = button_to "Supprimer", "/admin/annonces/"+annonce['id'].to_s, :method=>:delete, class: "btn btn-danger btn-xs", data: {confirm:"Etes vous sur ?"}
 .text-center
   = will_paginate @annonces, renderer: BootstrapPagination::Rails
