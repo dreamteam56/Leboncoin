@@ -16,9 +16,9 @@ public
 
   def show
     @annonce = Annonce.find params[:id]
+    @category = Category.find @annonce.category_id
     @owner = @annonce.user
     @pictures = @annonce.uploads
-    #puts @annonce.uploads[0].picture
     @displayed_by_owner = @annonce.is_owned_by?(current_user)
   end
 
@@ -91,8 +91,7 @@ public
 
   def chercher
     id_category = Category.where("name like ?",'%'+params[:categ]+'%')
-    puts id_category[0]['id']
-    @annonces = Annonce.where("title like ?",'%'+params[:title]+'%').paginate(:page => params[:page], :per_page => 9)
+    @annonces = Annonce.where("title like ? AND category_id = ?",'%'+params[:title]+'%',id_category[0]['id']).paginate(:page => params[:page], :per_page => 9)
     render :action => :index
   end
 

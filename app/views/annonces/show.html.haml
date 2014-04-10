@@ -52,6 +52,7 @@
     .panel.panel-default
       .panel-heading
         %p= @annonce["title"]
+        %i= @category["name"]
       .panel-body
         %ul.rslides
           -for picture in @pictures
