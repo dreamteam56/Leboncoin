@@ -12,6 +12,9 @@
             - if user_signed_in?
               %a{href: "/annonces/"+ annonce["id"].to_s}= annonce["title"]
               .col-sm-8
+                - @categories.each do |c|
+                  - if c["id"] == annonce["category_id"]
+                    %i= c["name"]
                 %h3
                   =annonce['price']
                   %i.fa.fa-eur

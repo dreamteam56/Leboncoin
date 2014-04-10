@@ -12,6 +12,7 @@ public
 
   def index
     @annonces = Annonce.where(archive: false).paginate(:page => params[:page], :per_page => 9)
+    @categories = Category.all
   end
 
   def show
