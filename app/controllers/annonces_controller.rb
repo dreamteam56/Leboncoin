@@ -26,7 +26,6 @@ public
   def new
 
     @categories = Category.all
-    puts @categories
     @annonce = Annonce.new()
     @annonce.uploads.build
 
@@ -34,14 +33,11 @@ public
 
   def create
     @annonce = Annonce.new(annonce_params)
-    puts annonce_params
-    
     @annonce.archive = false
     @annonce.user_id = params[:user_id]
     @annonce.category_id = params[:category_id]
     if @annonce.save
         params[:uploads_attributes].to_a.each do |picture|      
-          puts picture
           @annonce.uploads.create(:picture => picture)
       end
     end
@@ -71,7 +67,6 @@ public
     else
       @annonce.update_attributes(title: params[:title], description: params[:description], price: params[:price])
     end
-    # @annonce.update_attributes(picture: params[:picture])
     flash[:notice] = "Annonce modifié"
     redirect_to status: 303
   end
@@ -82,7 +77,6 @@ public
     @titre = annonce["title"]
     #Envoie du mail à l'admin
     @admins = User.where(admin: true)
-    puts @admins[0]["email"]
     ModelMailer.signal_annonce(@admins).deliver
     annonce.update_attributes(signaler: true)
     flash[:notice] = "Annonce signalé"
